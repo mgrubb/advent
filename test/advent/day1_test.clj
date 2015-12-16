@@ -25,5 +25,13 @@
   (is (= (floor ") ) )") -3))
   (is (= (floor "(a)b)") -1)))
 
-(println "Solution for day1 part 1 is:" (solution))
+(deftest basement-pos
+  (is (= (basement ")") 1))
+  (is (= (basement "())") 3))
+  (is (= (basement "(()))(") 5)))
 
+(deftest basement-never
+  (is (nil? (basement "()()"))))
+
+(println "Solution for day1 part 1 is:" (solution))
+(println "Solution for day 1 part 2 is:" (solution-2))
