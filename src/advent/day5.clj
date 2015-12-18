@@ -19,15 +19,23 @@
   [w]
   (every? identity ((juxt #(>= (vowel-count %) 3) double-letter? (complement verboten?)) w)))
 
-(defn count-nice-words
-  [data]
-  (loop [[word & words] data sum 0]
-    (if word
-      (if (nice-word? word)
-        (recur words (inc sum))
-        (recur words sum))
-      sum)))
+(defn letter-pair?
+  [w]
+  (when (re-find #"(..).*\1" w) true))
+
+(defn split-pair?
+  [w]
+  (when (re-find #"(.).\1" w) true))
+
+(defn nicer-word?
+  [w]
+  (and (letter-pair? w)
+       (split-pair? w)))
+
+(defn count-nice-words [pred data]
+  (count (filter pred data)))
 
 (defn solution []
   (let [data (line-seq (io/reader (io/resource "day5-input.txt")))]
-    (println "Solution for day 5 part 1 is:" (count-nice-words data))))
+    (println "Solution for day 5 part 1 is:" (count-nice-words nice-word? data))
+    (println "Solution for day 5 part 1 is:" (count-nice-words nicer-word? data))) )

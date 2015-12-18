@@ -28,4 +28,17 @@
        "haegwjzuvuyypxyu"
        "dvszwmarrgswjxmb"))
 
+(deftest nicer-word?-test
+  (are [x] (nicer-word? x)
+       "qjhvhtzxzqqjkmpb"
+       "xxyxx")
+  (are [x] (not (nicer-word? x))
+       "uurcxstgmygtbstg"
+       "ieodomkazucvgmuy"))
+
+(deftest nice-word-count
+  (is (= (count-nice-words nice-word? ["ugknbfddgicrmopn"
+                                       "aaa"
+                                       "a"
+                                       "baaa"]) 3)))
 (solution)
