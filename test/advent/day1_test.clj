@@ -33,5 +33,4 @@
 (deftest basement-never
   (is (nil? (basement "()()"))))
 
-(println "Solution for day1 part 1 is:" (solution))
-(println "Solution for day 1 part 2 is:" (solution-2))
+(solution)

@@ -29,8 +29,5 @@
 
 (defn solution
   []
-  (floor (slurp (io/resource "day1-input.txt"))))
-
-(defn solution-2
-  []
-  (basement (slurp (io/resource "day1-input.txt"))))
+  (println "Solution for day 1 part 1 is:" (floor (slurp (io/resource "day1-input.txt"))))
+  (println "Solution for day 1 part 2 is:" (basement (slurp (io/resource "day1-input.txt")))))
