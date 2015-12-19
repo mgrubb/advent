@@ -34,4 +34,4 @@
        {:op :on :p1 [0 0] :p2 [4 4]} (vec (repeat 25 1))
        {:op :toggle :p1 [0 0] :p2 [2 0]} (vec (concat [1 1 1] (repeat 22 0)))))
 
-(solution)
+;(solution)
