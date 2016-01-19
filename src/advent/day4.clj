@@ -1,4 +1,5 @@
 (ns advent.day4
+  (:require [advent.solution :refer :all])
   (:import [java.security MessageDigest]
            [java.math BigInteger]))
 
@@ -24,7 +25,6 @@
            (recur (inc num)))))))
   ([] (mine-coin 5)))
 
-(defn solution []
-  (println "Solution for day 4: disabled")
-  #_(println "Solution for day 4 part 1 is:" (mine-coin))
-  #_(println "Solution for day 4 part 2 is:" (mine-coin 6)))
+(defsolution 4
+  (println "Solution for day 4 part 1 is:" (mine-coin))
+  (println "Solution for day 4 part 2 is:" (mine-coin 6)))

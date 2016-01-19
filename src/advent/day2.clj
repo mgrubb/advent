@@ -1,5 +1,6 @@
 (ns advent.day2
-  (:require [clojure.string :as str]
+  (:require [advent.solution :refer :all]
+            [clojure.string :as str]
             [clojure.java.io :as io]))
 
 (def ^:private parse (comp
@@ -55,7 +56,7 @@
 
 
 
-(defn solution []
+(defsolution 2
   (let [gs (gifts "day2-input.txt")]
     (println "Solution for day 2 part 1 is:" (wrapping-paper gs))
     (println "Solution for day 2 part 2 is:" (ribbons gs))))

@@ -1,5 +1,6 @@
 (ns advent.day6
-  (:require [clojure.string :as str]
+  (:require [advent.solution :refer :all]
+            [clojure.string :as str]
             [clojure.java.io :as io]))
 
 (defn- meta-key [obj k] (get (meta obj) k))
@@ -94,7 +95,7 @@
   [g]
   (reduce + (set-lights g)))
 
-(defn solution []
+(defsolution 6
   (let [g1 (make-grid 1000)
         g2 (make-grid 1000 brightness-mode)]
     (println "Solution for day 6 part 1 is:" (light-count g1))

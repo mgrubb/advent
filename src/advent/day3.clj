@@ -1,5 +1,6 @@
 (ns advent.day3
-  (:require [clojure.java.io :as io]
+  (:require [advent.solution :refer :all]
+            [clojure.java.io :as io]
             [clojure.set :as set]))
 
 (def ^:private delta-dir
@@ -41,6 +42,6 @@
         rd (houses rd)]
     (set/union sd rd)))
 
-(defn solution []
+(defsolution 3
   (println "Solution for day 3 part 1 is:" (count (visit-houses)))
   (println "Solution for day 3 part 2 is:" (count (robo-visit-houses))))

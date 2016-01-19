@@ -1,5 +1,6 @@
 (ns advent.day8
-  (:require [clojure.java.io :as io]
+  (:require [advent.solution :refer :all]
+            [clojure.java.io :as io]
             [clojure.string :as str]))
 
 (defn encode
@@ -38,8 +39,7 @@
   (- (reencode-total lines)
      (code-total lines)))
 
-(defn solution
-  []
+(defsolution 8
   (let [lines (->> "day8-input.txt"
                    io/resource
                    io/reader

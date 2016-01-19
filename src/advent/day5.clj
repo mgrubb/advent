@@ -1,5 +1,6 @@
 (ns advent.day5
-  (:require [clojure.java.io :as io]))
+  (:require [advent.solution :refer :all]
+            [clojure.java.io :as io]))
 
 (defonce vowels* #{\a \e \i \o \u})
 
@@ -35,7 +36,7 @@
 (defn count-nice-words [pred data]
   (count (filter pred data)))
 
-(defn solution []
+(defsolution 5
   (let [data (line-seq (io/reader (io/resource "day5-input.txt")))]
     (println "Solution for day 5 part 1 is:" (count-nice-words nice-word? data))
     (println "Solution for day 5 part 1 is:" (count-nice-words nicer-word? data))) )

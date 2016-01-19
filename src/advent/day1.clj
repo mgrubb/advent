@@ -1,5 +1,7 @@
 (ns advent.day1
-  (:require [clojure.java.io :as io]))
+  (:require
+    [advent.solution :refer :all]
+    [clojure.java.io :as io]))
 
 (defn- do-char
   [c s]
@@ -27,7 +29,6 @@
       (when (< sum 0)
         pos))))
 
-(defn solution
-  []
+(defsolution 1
   (println "Solution for day 1 part 1 is:" (floor (slurp (io/resource "day1-input.txt"))))
   (println "Solution for day 1 part 2 is:" (basement (slurp (io/resource "day1-input.txt")))))

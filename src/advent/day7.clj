@@ -1,5 +1,6 @@
 (ns advent.day7
-  (:require [instaparse.core :as insta]
+  (:require [advent.solution :refer :all]
+            [instaparse.core :as insta]
             [clojure.java.io :as io]))
 
 (def parser
@@ -33,21 +34,14 @@
           (cmd->hash [i o] {:INPUT i :OUTPUT o})
           (rmtag [x] x)
           (to-hash [tag] (fn [x] {tag x}))
-          (binary-op [op] (fn [x y] {op [x y]}))
-          ]
+          (binary-op [op] (fn [x y] {op [x y]}))]
     (insta/transform {:signal (str->int :signal)
                       :num (str->int :num)
                       :CMD cmd->hash
                       :INPUTS rmtag
                       :OUTPUT rmtag
                       :INPUT rmtag
-                      :wire (to-hash :wire)
-                      ;:LSHIFT (binary-op :LSHIFT)
-                      ;:RSHIFT (binary-op :RSHIFT)
-                      ;:AND (binary-op :AND)
-                      ;:OR (binary-op :OR)
-                      ;:NOT (to-hash :NOT)
-                      } t)))
+                      :wire (to-hash :wire)} t)))
 
 (defn parse
   [inp]
@@ -95,8 +89,7 @@
   (let [form (tree wire)]
     (do-form form tree)))
 
-(defn solution
-  []
+(defsolution 7
   (let [input (-> "day7-input.txt"
                   io/resource
                   slurp)
