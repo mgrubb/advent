@@ -1,7 +1,6 @@
 (ns advent.day9-test
   (:require [clojure.test :refer :all]
-            [advent.day9 :refer :all]
-            [loom.graph :as graph]))
+            [advent.day9 :refer :all]))
 
 (defonce input [[:london :dublin 464]
                 [:london :belfast 518]
