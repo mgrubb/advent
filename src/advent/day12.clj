@@ -1,6 +1,6 @@
 (ns advent.day12
   (:require [clojure.java.io :as io]
-            [clojure.walk :refer [postwalk]]
+            [clojure.walk :refer [postwalk prewalk]]
             [clojure.data.json :as json]
             [advent.solution :refer [defsolution]]))
 
@@ -19,6 +19,13 @@
                  %) d)
     @res))
 
+(defn filter-red
+  [d]
+  (prewalk #(if (and (map? %) (some #{"red"} (vals %))) nil %) d))
+
 (defsolution 12
-  (show 1 (sum-walk (read-input "day12-input.txt"))))
+  (let [d (read-input "day12-input.txt")
+        d' (filter-red d)]
+    (show 1 (sum-walk d))
+    (show 2 (sum-walk d'))))
 
