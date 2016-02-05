@@ -1,5 +1,6 @@
 (ns advent.day9
   (:require [advent.solution :refer :all]
+            [advent.util :refer [permutations]]
             [clojure.java.io :as io]
             [clojure.string :as str]
             [clojure.set :as set]))
@@ -33,11 +34,7 @@
 
 (defn all-paths
   [nodes]
-  (if (= 1 (count nodes))
-    (vector nodes)
-    (vec (for [n nodes
-          tail (all-paths (disj (set nodes) n))]
-      (vec (cons n tail))))))
+  (permutations nodes))
 
 (defn split-path
   [path]
