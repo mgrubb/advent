@@ -48,7 +48,7 @@
   (let [dmap (-> "day9-input.txt" read-input mkdisthash)
         nodes (nodes dmap)
         paths (all-paths nodes)
-        lengths (map (partial path-length dmap) paths)
+        lengths (pmap (partial path-length dmap) paths)
         min-length-path (apply min lengths)
         max-length-path (apply max lengths)]
     (println "Solution for day 9 part 1 is:" min-length-path)
