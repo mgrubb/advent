@@ -36,9 +36,11 @@
              (get-in wm [p1 p2]))))
 
 (def weight-sum
-  (memoize (fn [wm [p1 p2]]
-             (+ (weight wm p1 p2)
-                (weight wm p2 p1)))))
+  (memoize (fn ws
+             ([wm [p1 p2]]
+                   (+ (weight wm p1 p2)
+                      (weight wm p2 p1)))
+             ([wm p1 p2] (ws wm [p1 p2])))))
 
 (defn all-seatings
   [guests]
