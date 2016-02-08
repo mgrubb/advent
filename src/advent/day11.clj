@@ -12,6 +12,10 @@
   [n]
   (char (+ n *alpha-start*)))
 
+(defn nums->str
+  [nc]
+  (apply str (map num->char nc)))
+
 ;; Thank you slj/advent https://github.com/sjl/advent/blob/master/advent.lisp#L598
 (defn inc-nums
   [nums]
@@ -28,24 +32,15 @@
   [s]
   (mapv char->num s))
 
-(defn inc-str
-  [s]
-  (->> s
-       str
-       (map char->num)
-       inc-nums
-       (map num->char)
-       (apply str)))
-
+(def ^:dynamic *bad-chars* #{\i \o \l})
 (defn no-bad-chars?
-  [s]
-  (not (some #{\i \o \l} s)))
+  [n]
+  (not (some (set (map char->num *bad-chars*)) n)))
 
 (defn has-straight?
-  [s]
+  [n]
   (letfn [(is-run? [[x y z]] (= x (dec y) (- z 2)))]
-    (->> s
-      str->nums
+    (->> n
       (partition 3 1)
       (some is-run?)
       some?)))
@@ -56,23 +51,21 @@
              (partition-by identity)
              (map count)
              (filter #{2}))
-        cnt (->> s str->nums (transduce xf + 0))]
-    (if (>= cnt 4)
-      true
-      false)))
+        cnt (transduce xf + 0 s)]
+    (>= cnt 4)))
 
 (defn valid-password?
-  [s]
-  (and (no-bad-chars? s)
-       (has-pairs? s)
-       (has-straight? s)))
+  [n]
+  (and (no-bad-chars? n)
+       (has-pairs? n)
+       (has-straight? n)))
 
 (defn find-next-password
   ([s]
-   (loop [s (inc-str s)]
-     (if (valid-password? s)
-       s
-       (recur (inc-str s)))))
+   (loop [n (-> s str->nums inc-nums)]
+     (if (valid-password? n)
+       (nums->str n)
+       (recur (inc-nums n)))))
   ([] (find-next-password "aabcc")))
 
 (defsolution 11
