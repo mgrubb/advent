@@ -15,4 +15,4 @@
   (is (= 3 (weight-sum wm :me :you)))
   (is (= 3 (weight-sum wm :you :me))))
 
-(solution)
+(solution false)
